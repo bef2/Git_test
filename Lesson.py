@@ -1,5 +1,6 @@
 import tkinter as tk
-from random import randint
+from random import randint, choice
+
 
 WIDTH = 1200
 HEIGHT = 800
@@ -7,14 +8,15 @@ HEIGHT = 800
 
 class Ball:
     def __init__(self):
+        self.speed_list = [k for k in range(-5, 6) if k != 0]
+        self.colors = ["green", "yellow", "pink", "red", "blue", "brown", "orange", "purple", "fuchsia", "goldenrod"]
         self.radius = randint(20, 70)
         self.x = randint(self.radius, WIDTH - self.radius)
         self.y = randint(self.radius, HEIGHT - self.radius)
-        self.colors = ["green", "yellow", "pink", "red", "blue", "brown", "orange", "purple", "fuchsia", "goldenrod"]
-        self.dx, self.dy = (randint(-5, 5), randint(-5, 5))
+        self.dx, self.dy = (choice(self.speed_list), choice(self.speed_list))
         self.ball_id = canvas.create_oval(self.x - self.radius, self.y - self.radius,
                                           self.x + self.radius, self.y + self.radius,
-                                          fill=self.colors[randint(0, len(self.colors) - 1)])
+                                          fill=choice(self.colors))
 
     def move(self):
         self.x += self.dx
@@ -31,22 +33,20 @@ class Ball:
 def canvas_click_handler(event):
     print("canvas_click_handler: x=", event.x, 'y=', event.y)
 
-
 def tick():
     for ball in balls:
         ball.move()
         ball.show()
-    root.after(50, tick)
+    root.after(40, tick)
 
 def main():
     global root, canvas, balls
-
     root = tk.Tk()
     root.geometry(str(WIDTH) + "x" + str(HEIGHT))
     canvas = tk.Canvas(root)
     canvas.pack(anchor="center", fill=tk.BOTH, expand=True)
     canvas.bind('<Button-1>', canvas_click_handler)
-    balls = [Ball() for i in range(50)]
+    balls = [Ball() for i in range(60)]
     tick()
     root.mainloop()
 
