@@ -2,8 +2,8 @@ import tkinter as tk
 from random import randint, choice
 
 
-WIDTH = 1200
-HEIGHT = 800
+WIDTH = 600
+HEIGHT = 400
 
 
 class Ball:
@@ -46,7 +46,7 @@ def main():
     canvas = tk.Canvas(root)
     canvas.pack(anchor="center", fill=tk.BOTH, expand=True)
     canvas.bind('<Button-1>', canvas_click_handler)
-    balls = [Ball() for i in range(60)]
+    balls = [Ball() for i in range(10)]
     tick()
     root.mainloop()
 
