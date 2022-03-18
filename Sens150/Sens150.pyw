@@ -34,7 +34,7 @@ class TCP_stream(QThread):
             self.mainwindow.label_dig_1.setText(f'{sens_lst[4]}  \N{DEGREE SIGN}C')
             self.mainwindow.label_dig_2.setText(f'{sens_lst[6]}  \N{DEGREE SIGN}C')
             self.mainwindow.label_dig_3.setText(f'{sens_lst[8]}  \N{DEGREE SIGN}C')
-            self.mainwindow.label_dig_4.setText(f'{sens_lst[10]}  \N{DEGREE SIGN}C')
+            self.mainwindow.label_dig_4.setText(f'{sens_lst[10]} \N{DEGREE SIGN}C')
             time.sleep(dead_time)
 
 class Ui_MainWindow(object):
